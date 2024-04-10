@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ReactMediaRecorder } from 'react-media-recorder';
+import { ReactMediaRecorder } from 'react-media-recorder-2';
 
 function App() {
   const [id, setId] = useState('');
