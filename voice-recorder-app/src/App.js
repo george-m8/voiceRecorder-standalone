@@ -146,16 +146,29 @@ function App() {
           </div>
           <ReactMediaRecorder
             audio
-            render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
+            render={({ status, startRecording, stopRecording, mediaBlobUrl }) => {
+              // Handler to start recording and any additional logic
+              const handleStartRecording = () => {
+                startRecording();
+                // Additional logic when recording starts
+              };
+
+              // Handler to stop recording and any additional logic
+              const handleStopRecording = () => {
+                stopRecording();
+                // Additional logic when recording stops
+              };
+
+              return (
               <>
                 {/* Conditionally render status messages based on the recorder's status */}
                 {status === "recording" && <p className="text-gray-400 my-4 italic text-sm text-center"><RecordingIndicator /></p>}
                 {status === "stopped" && <p className="text-gray-400 my-4 italic text-sm text-center">Recording stopped.</p>}
                 <div className="flex justify-center items-center mb-4 flex-col">
                   {status === "recording" ? (
-                    <button onClick={stopRecording} className="bg-teal-400 text-white px-4 py-2 m-2 rounded shadow hover:bg-teal-500 transition-colors duration-200 ease-in-out">Stop Recording</button>
+                    <button onClick={handleStopRecording} className="bg-teal-400 text-white px-4 py-2 m-2 rounded shadow hover:bg-teal-500 transition-colors duration-200 ease-in-out">Stop Recording</button>
                   ) : (
-                    <button onClick={startRecording} className="bg-teal-400 text-white px-4 py-2 m-2 rounded shadow hover:bg-teal-500 transition-colors duration-200 ease-in-out">
+                    <button onClick={handleStartRecording} className="bg-teal-400 text-white px-4 py-2 m-2 rounded shadow hover:bg-teal-500 transition-colors duration-200 ease-in-out">
                     {status === "stopped" ? "Restart Recording" : "Start Recording"}
                     </button>
                   )}
@@ -170,7 +183,8 @@ function App() {
                   )}
                 </div>
               </>
-            )}
+              )
+            }}
           />
         </div>
       )}
