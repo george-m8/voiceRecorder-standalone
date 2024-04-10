@@ -50,10 +50,6 @@ function App() {
     return <span>Audio recording{text}</span>;
   }
 
-  const handleButtonClick = () => {
-    console.log('You clicked the button');
-  };
-
   const handleSaveRecording = async (blobUrl) => {
     // Check for blank input
     if (id.trim() === "") {
@@ -133,9 +129,6 @@ function App() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100 p-2 md:p-4">
       {formVisible && (
         <div className="w-full max-w-md mx-auto bg-white shadow-lg rounded-lg p-4 md:p-6">
-          <button onClick={handleButtonClick} className="bg-teal-400 text-white px-4 py-2 m-2 rounded shadow hover:bg-teal-500 transition-colors duration-200 ease-in-out">
-            Click me
-          </button>
           <input
             type="text"
             value={id}
