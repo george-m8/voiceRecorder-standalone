@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build && sudo rm -rf /var/www/voiceRecorder-standalone/voice-recorder-app/build && sudo cp -R ./build /var/www/voiceRecorder-standalone/voice-recorder-app/ && sudo chown -R www-data:www-data /var/www/voiceRecorder-standalone/voice-recorder-app && sudo chmod -R 755 /var/www/voiceRecorder-standalone/voice-recorder-app",
+    "deploy": "npm run build && sudo rm -rf /var/www/voiceRecorder-standalone/voice-recorder-app/build && sudo cp -R ./build /var/www/voiceRecorder-standalone/voice-recorder-app/ && sudo chown -R www-data:www-data /var/www/voiceRecorder-standalone/voice-recorder-app && sudo chmod -R 755 /var/www/voiceRecorder-standalone/voice-recorder-app && sudo systemctl reload nginx",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
