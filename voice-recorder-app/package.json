@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "autoprefixer": "^10.4.19",
     "postcss": "^8.4.38",
+    "@babel/plugin-proposal-private-property-in-object": "^7.16.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-media-recorder": "^1.6.6",

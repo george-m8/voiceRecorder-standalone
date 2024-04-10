@@ -91,7 +91,7 @@ function App() {
     const redirectUrl = queryParams.get('redirectUrl');
 
     try {
-      const response = await fetch('http://beta.verenigma.com:4000/upload', {
+      const response = await fetch('https://beta.verenigma.com:4000/upload', {
         method: 'POST',
         body: formData,
       });
