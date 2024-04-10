@@ -1,8 +1,15 @@
 const express = require('express');
 const multer  = require('multer');
 const fs = require('fs');
+const https = require('https');
 const app = express();
 const port = 4000;
+
+// Specify the path to your cert and key from Certbot
+const sslOptions = {
+  key: fs.readFileSync('/etc/letsencrypt/live/beta.verenigma.com/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/beta.verenigma.com/fullchain.pem')
+};
 
 // Audio file filter
 const audioFilter = (req, file, cb) => {
@@ -19,9 +26,9 @@ const audioFilter = (req, file, cb) => {
   }); 
   
 
-// Enable CORS for your frontend
+// CORS Middleware
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Origin", "*"); // Adjust if needed
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -45,6 +52,7 @@ app.post('/upload', upload.single('recording'), (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Creating HTTPS server
+https.createServer(sslOptions, app).listen(port, () => {
+  console.log(`Server running at https://localhost:${port}`);
 });
