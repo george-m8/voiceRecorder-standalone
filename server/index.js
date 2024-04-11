@@ -7,8 +7,8 @@ const port = 4000;
 
 // Specify the path to your cert and key from Certbot
 const sslOptions = {
-  key: fs.readFileSync('/etc/letsencrypt/live/beta.verenigma.com/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/beta.verenigma.com/fullchain.pem')
+  key: fs.readFileSync('/home/george/certs/privkey.pem'),
+  cert: fs.readFileSync('/home/george/certs/fullchain.pem')
 };
 
 // Audio file filter
@@ -54,5 +54,5 @@ app.post('/upload', upload.single('recording'), (req, res) => {
 
 // Creating HTTPS server
 https.createServer(sslOptions, app).listen(port, () => {
-  console.log(`Server running at https://localhost:${port}`);
+  console.log(`Server running at https://beta.verenigma.com:${port}`);
 });
