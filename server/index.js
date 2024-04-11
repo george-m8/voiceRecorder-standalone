@@ -22,13 +22,13 @@ const audioFilter = (req, file, cb) => {
   const upload = multer({ 
     dest: 'uploads/',
     fileFilter: audioFilter,
-    // You can also add a size limit here, e.g., limits: { fileSize: 10 * 1024 * 1024 } // for a 10MB limit
+    limits: { fileSize: 16 * 1024 * 1024 } // 16MB size limit
   }); 
   
 
 // CORS Middleware
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // Adjust if needed
+  res.header("Access-Control-Allow-Origin", "https://beta.verenigma.com"); // Adjust if needed
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
