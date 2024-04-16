@@ -91,7 +91,7 @@ function App() {
     const paramRedirectUrl = queryParams.get('redirectUrl');
 
     // Specify a default redirect URL
-    const defaultUrl = ""; // You can change this URL to whatever you prefer
+    const defaultUrl = "zerotosixtycreative.co.uk"; // You can change this URL to whatever you prefer
 
     // Function to determine which URL to use
     function determineRedirectUrl() {
