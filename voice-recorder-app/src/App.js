@@ -88,7 +88,23 @@ function App() {
 
     // Extract the redirect URL from the current window location
     const queryParams = new URLSearchParams(window.location.search);
-    const redirectUrl = queryParams.get('redirectUrl');
+    const paramRedirectUrl = queryParams.get('redirectUrl');
+
+    // Specify a default redirect URL
+    const defaultUrl = ""; // You can change this URL to whatever you prefer
+
+    // Function to determine which URL to use
+    function determineRedirectUrl() {
+      // Check if the redirectUrl is not null and not empty
+      if (paramRedirectUrl && paramRedirectUrl.trim() !== "") {
+        return paramRedirectUrl;
+      } else {
+        return defaultUrl;
+      }
+    }
+
+    // Usage
+    const redirectUrl = determineRedirectUrl();
 
     try {
       const response = await fetch('https://beta.verenigma.com:4000/upload', {
