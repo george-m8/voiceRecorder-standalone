@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Configuration
-UPLOADS_DIR="/voiceRecorder-standalone/server/uploads"
+UPLOADS_DIR="voiceRecorder-standalone/server/uploads"
 S3_BUCKET="s3://hrv-audio-recs"
 LOG_FILE="voiceRecorder-standalone/utilities/moveToS3.log"
 
