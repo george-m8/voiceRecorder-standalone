@@ -3,7 +3,7 @@
 # Configuration
 UPLOADS_DIR="/voiceRecorder-standalone/server/uploads"
 S3_BUCKET="s3://hrv-audio-recs"
-LOG_FILE="/voiceRecorder-standalone/utilities/moveToS3.log"
+LOG_FILE="voiceRecorder-standalone/utilities/moveToS3.log"
 
 # Start logging
 echo "Starting file transfer at $(date)" >> $LOG_FILE
