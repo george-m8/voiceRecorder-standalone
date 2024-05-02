@@ -15,7 +15,7 @@ do
         echo "Uploading $file to $S3_BUCKET" >> $LOG_FILE
         
         # Upload to S3 and check if the upload was successful
-        if aws s3 cp "$file" "$S3_BUCKET" --only-show-errors; then
+        if aws s3 cp "$file" "$S3_BUCKET"; then
             echo "Successfully uploaded $file" >> $LOG_FILE
             
             # Remove the file if upload was successful
