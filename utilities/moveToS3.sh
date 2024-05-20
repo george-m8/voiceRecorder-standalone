@@ -22,7 +22,7 @@ do
             rm "$file"
             echo "Deleted local file $file" >> $LOG_FILE
         else
-            echo "Failed to upload $file" >> $LOG_FILE
+            echo "Failed to upload $file. AWS CLI Output: $OUTPUT" >> $LOG_FILE
         fi
     fi
 done
