@@ -29,6 +29,7 @@ const audioFilter = (req, file, cb) => {
 // CORS Middleware
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "https://beta.verenigma.com"); // Adjust if needed
+  res.header("Access-Control-Allow-Methods", "GET, POST");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
@@ -49,6 +50,21 @@ app.post('/upload', upload.single('recording'), (req, res) => {
     if (err) return res.status(500).send({ success: false });
 
     res.send({ success: true, message: 'File saved!', filename: outputPath });
+  });
+});
+
+app.post('/log', (req, res) => {
+  const { type, message } = req.body;
+  const logMessage = `${new Date().toISOString()} [${type}]: ${message}\n`;
+
+  // Append log message to a file
+  fs.appendFile('server-logs.txt', logMessage, (err) => {
+      if (err) {
+          console.error('Failed to write to log file', err);
+          res.status(500).send('Failed to log message');
+          return;
+      }
+      res.status(200).send('Log saved');
   });
 });
 

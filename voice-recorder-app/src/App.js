@@ -50,6 +50,18 @@ function App() {
     return <span>Audio recording{text}</span>;
   }
 
+  function sendLogToServer(type, message) {
+    fetch('https://beta.verenigma.com:4000/log', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({type, message})
+    }).catch(err => {
+        console.warn('Failed to send log to server', err);
+    });
+  }
+
   const handleSaveRecording = async (blobUrl) => {
     // Check for blank input
     if (id.trim() === "") {
@@ -132,11 +144,19 @@ function App() {
           setMessage(thankYouMessage);
         }
       } else {
-        setMessage('File upload failed.');
+        // Provide more specific feedback based on server response
+        alert(result.message || 'File upload failed for unknown reasons.');
+        sendLogToServer('ERROR', result.message || 'File upload failed for unknown reasons.');
       }
     } catch (error) {
       console.error(error);
-      setMessage('Error encountered during upload.'); // Handle fetch error
+      sendLogToServer('ERROR', `Client-side exception: ${error.message}`);
+      if (error instanceof TypeError) {
+        // This usually indicates a network error or misconfiguration
+        alert('Cannot connect to server, please check your connection and try again.');
+      } else {
+        alert('Error encountered during upload: ' + error.message);
+      }
     }
   };
 
