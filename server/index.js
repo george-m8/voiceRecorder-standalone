@@ -11,6 +11,9 @@ const sslOptions = {
   cert: fs.readFileSync('/home/george/certs/fullchain.pem')
 };
 
+// Middleware to parse JSON bodies
+app.use(express.json());
+
 // Audio file filter
 const audioFilter = (req, file, cb) => {
     if (!file.originalname.match(/\.(wav|mp3|ogg|webm)$/)) { 
